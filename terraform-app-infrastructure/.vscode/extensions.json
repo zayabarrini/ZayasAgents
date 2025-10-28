@@ -1,0 +1,10 @@
+// .vscode/extensions.json
+{
+  "recommendations": [
+    "hashicorp.terraform",
+    "4ops.terraform",
+    "mindginative.terraform-snippets",
+    "aws-scripting-guy.cform",
+    "ms-kubernetes-tools.vscode-kubernetes-tools"
+  ]
+}

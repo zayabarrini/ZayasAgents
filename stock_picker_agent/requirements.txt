@@ -1,0 +1,9 @@
+crewai
+crewai-tools
+langchain-openai
+yfinance
+pandas
+numpy
+python-dotenv
+requests
+beautifulsoup4

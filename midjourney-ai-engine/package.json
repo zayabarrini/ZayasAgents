@@ -1,0 +1,32 @@
+{
+  "name": "midjourney-ai-engine",
+  "version": "1.0.0",
+  "description": "Agentic AI Engineering Project - Midjourney-style Image Generation",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "lint": "eslint src/**/*.js",
+    "lint:fix": "eslint src/**/*.js --fix",
+    "format": "prettier --write src/**/*.js",
+    "setup": "node scripts/setup.js"
+  },
+  "devDependencies": {
+    "vite": "^4.4.0",
+    "eslint": "^8.45.0",
+    "eslint-config-prettier": "^8.8.0",
+    "eslint-plugin-import": "^2.28.0",
+    "prettier": "^3.0.0"
+  },
+  "dependencies": {
+    "canvas-confetti": "^1.6.0"
+  },
+  "keywords": [
+    "ai",
+    "midjourney",
+    "image-generation",
+    "agentic-ai",
+    "prompt-engineering"
+  ]
+}

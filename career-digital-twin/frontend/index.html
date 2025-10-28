@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Career Digital Twin</title>
+    <link rel="stylesheet" href="styles/main.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>My Career Digital Twin</h1>
+            <p>An AI agent representing me to potential employers</p>
+        </header>
+
+        <main>
+            <section id="profile-section" class="card">
+                <h2>Professional Profile</h2>
+                <div id="profile-content">
+                    <div class="profile-header">
+                        <img id="profile-image" src="#" alt="Profile Picture" class="profile-img">
+                        <div class="profile-info">
+                            <h3 id="profile-name">Loading...</h3>
+                            <p id="profile-title">Professional Title</p>
+                            <div class="skills-container" id="skills-list">
+                                <!-- Skills will be populated here -->
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="profile-details">
+                        <div class="detail-section">
+                            <h4>About Me</h4>
+                            <p id="about-me">Loading...</p>
+                        </div>
+                        
+                        <div class="detail-section">
+                            <h4>Experience</h4>
+                            <div id="experience-list">
+                                <!-- Experience items will be populated here -->
+                            </div>
+                        </div>
+                        
+                        <div class="detail-section">
+                            <h4>Education</h4>
+                            <div id="education-list">
+                                <!-- Education items will be populated here -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="interaction-section" class="card">
+                <h2>Ask My Digital Twin</h2>
+                <div class="chat-container">
+                    <div id="chat-messages" class="chat-messages">
+                        <div class="message bot-message">
+                            Hello! I'm your Career Digital Twin. Ask me anything about my professional background, skills, or experience.
+                        </div>
+                    </div>
+                    <div class="chat-input">
+                        <input type="text" id="user-input" placeholder="Ask a question about my profile...">
+                        <button id="send-btn">Send</button>
+                    </div>
+                </div>
+            </section>
+
+            <section id="job-matching-section" class="card">
+                <h2>Job Matching</h2>
+                <div class="matching-interface">
+                    <textarea id="job-description" placeholder="Paste a job description here to see how well I match..."></textarea>
+                    <button id="analyze-match">Analyze Match</button>
+                    <div id="match-results" class="match-results">
+                        <!-- Match results will be displayed here -->
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script src="scripts/app.js"></script>
+</body>
+</html>

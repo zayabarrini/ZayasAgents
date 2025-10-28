@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Midjourney AI - Image Generation</title>
+    <style>
+        :root {
+            --primary: #0f172a;
+            --secondary: #1e293b;
+            --accent: #3b82f6;
+            --text: #f8fafc;
+            --text-secondary: #94a3b8;
+            --success: #10b981;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: var(--primary);
+            color: var(--text);
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding: 20px;
+            border-bottom: 1px solid var(--secondary);
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            background: linear-gradient(90deg, #3b82f6, #8b5cf6);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        
+        .subtitle {
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+        }
+        
+        .main-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+        }
+        
+        @media (max-width: 768px) {
+            .main-content {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        .prompt-section {
+            background-color: var(--secondary);
+            border-radius: 10px;
+            padding: 25px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        .image-section {
+            background-color: var(--secondary);
+            border-radius: 10px;
+            padding: 25px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .section-title {
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+            color: var(--accent);
+        }
+        
+        .prompt-input {
+            width: 100%;
+            min-height: 120px;
+            background-color: rgba(15, 23, 42, 0.7);
+            border: 1px solid #334155;
+            border-radius: 8px;
+            padding: 15px;
+            color: var(--text);
+            font-size: 1rem;
+            resize: vertical;
+            margin-bottom: 20px;
+        }
+        
+        .prompt-input:focus {
+            outline: none;
+            border-color: var(--accent);
+        }
+        
+        .parameters {
+            margin-bottom: 20px;
+        }
+        
+        .param-group {
+            margin-bottom: 15px;
+        }
+        
+        .param-label {
+            display: block;
+            margin-bottom: 8px;
+            color: var(--text-secondary);
+        }
+        
+        .param-select, .param-input {
+            width: 100%;
+            padding: 10px;
+            background-color: rgba(15, 23, 42, 0.7);
+            border: 1px solid #334155;
+            border-radius: 6px;
+            color: var(--text);
+        }
+        
+        .modifiers {
+            margin-bottom: 25px;
+        }
+        
+        .modifier-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 10px;
+        }
+        
+        .modifier-tag {
+            background-color: rgba(59, 130, 246, 0.2);
+            border: 1px solid var(--accent);
+            border-radius: 20px;
+            padding: 5px 12px;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        
+        .modifier-tag:hover {
+            background-color: rgba(59, 130, 246, 0.4);
+        }
+        
+        .modifier-tag.active {
+            background-color: var(--accent);
+        }
+        
+        .generate-btn {
+            width: 100%;
+            padding: 15px;
+            background: linear-gradient(90deg, #3b82f6, #8b5cf6);
+            border: none;
+            border-radius: 8px;
+            color: white;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+        
+        .generate-btn:hover {
+            transform: translateY(-2px);
+        }
+        
+        .image-placeholder {
+            width: 100%;
+            height: 400px;
+            background-color: rgba(15, 23, 42, 0.7);
+            border: 2px dashed #334155;
+            border-radius: 10px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 20px;
+            color: var(--text-secondary);
+        }
+        
+        .image-placeholder i {
+            font-size: 3rem;
+            margin-bottom: 15px;
+        }
+        
+        .image-result {
+            width: 100%;
+            border-radius: 10px;
+            display: none;
+        }
+        
+        .image-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            width: 100%;
+        }
+        
+        .grid-image {
+            width: 100%;
+            aspect-ratio: 1/1;
+            background-color: rgba(15, 23, 42, 0.7);
+            border-radius: 8px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            text-align: center;
+            padding: 10px;
+        }
+        
+        .loading {
+            display: none;
+            text-align: center;
+            margin: 20px 0;
+        }
+        
+        .loading-spinner {
+            border: 4px solid rgba(59, 130, 246, 0.3);
+            border-radius: 50%;
+            border-top: 4px solid var(--accent);
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 15px;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        .history {
+            margin-top: 30px;
+        }
+        
+        .history-item {
+            background-color: var(--secondary);
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .history-prompt {
+            flex-grow: 1;
+        }
+        
+        .history-image {
+            width: 60px;
+            height: 60px;
+            background-color: rgba(15, 23, 42, 0.7);
+            border-radius: 6px;
+            margin-left: 15px;
+        }
+        
+        footer {
+            text-align: center;
+            margin-top: 50px;
+            padding: 20px;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            border-top: 1px solid var(--secondary);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Midjourney AI</h1>
+            <p class="subtitle">Create amazing images with prompts, parameters, and modifiers</p>
+        </header>
+        
+        <div class="main-content">
+            <section class="prompt-section">
+                <h2 class="section-title">Create Your Prompt</h2>
+                
+                <textarea class="prompt-input" placeholder="Describe the image you want to create...">A majestic dragon soaring over a medieval castle at sunset, fantasy art, highly detailed, dramatic lighting</textarea>
+                
+                <div class="parameters">
+                    <div class="param-group">
+                        <label class="param-label">Aspect Ratio</label>
+                        <select class="param-select" id="aspect-ratio">
+                            <option value="1:1">1:1 (Square)</option>
+                            <option value="16:9">16:9 (Widescreen)</option>
+                            <option value="9:16">9:16 (Portrait)</option>
+                            <option value="4:3">4:3 (Standard)</option>
+                            <option value="3:2">3:2 (Classic)</option>
+                        </select>
+                    </div>
+                    
+                    <div class="param-group">
+                        <label class="param-label">Style</label>
+                        <select class="param-select" id="style">
+                            <option value="photorealistic">Photorealistic</option>
+                            <option value="artistic">Artistic</option>
+                            <option value="abstract">Abstract</option>
+                            <option value="minimalist">Minimalist</option>
+                            <option value="surreal">Surreal</option>
+                        </select>
+                    </div>
+                    
+                    <div class="param-group">
+                        <label class="param-label">Quality</label>
+                        <select class="param-select" id="quality">
+                            <option value="standard">Standard</option>
+                            <option value="high">High</option>
+                            <option value="ultra">Ultra</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="modifiers">
+                    <label class="param-label">Style Modifiers</label>
+                    <div class="modifier-tags">
+                        <div class="modifier-tag">cinematic</div>
+                        <div class="modifier-tag">fantasy art</div>
+                        <div class="modifier-tag">hyperdetailed</div>
+                        <div class="modifier-tag">oil painting</div>
+                        <div class="modifier-tag">concept art</div>
+                        <div class="modifier-tag">digital painting</div>
+                        <div class="modifier-tag">anime style</div>
+                        <div class="modifier-tag">cyberpunk</div>
+                        <div class="modifier-tag">steampunk</div>
+                        <div class="modifier-tag">watercolor</div>
+                    </div>
+                </div>
+                
+                <div class="modifiers">
+                    <label class="param-label">Lighting & Atmosphere</label>
+                    <div class="modifier-tags">
+                        <div class="modifier-tag">dramatic lighting</div>
+                        <div class="modifier-tag">soft lighting</div>
+                        <div class="modifier-tag">moody</div>
+                        <div class="modifier-tag">ethereal</div>
+                        <div class="modifier-tag">golden hour</div>
+                        <div class="modifier-tag">foggy</div>
+                        <div class="modifier-tag">volumetric lighting</div>
+                        <div class="modifier-tag">neon lights</div>
+                    </div>
+                </div>
+                
+                <button class="generate-btn" id="generate-btn">Generate Image</button>
+                
+                <div class="loading" id="loading">
+                    <div class="loading-spinner"></div>
+                    <p>Creating your image... This may take a few moments.</p>
+                </div>
+            </section>
+            
+            <section class="image-section">
+                <h2 class="section-title">Generated Image</h2>
+                
+                <div class="image-placeholder" id="image-placeholder">
+                    <i>🖼️</i>
+                    <p>Your generated image will appear here</p>
+                </div>
+                
+                <img src="" alt="Generated Image" class="image-result" id="image-result">
+                
+                <div class="image-grid" id="image-grid">
+                    <div class="grid-image">Variant 1</div>
+                    <div class="grid-image">Variant 2</div>
+                    <div class="grid-image">Variant 3</div>
+                    <div class="grid-image">Variant 4</div>
+                </div>
+            </section>
+        </div>
+        
+        <div class="history">
+            <h2 class="section-title">Generation History</h2>
+            
+            <div class="history-item">
+                <div class="history-prompt">
+                    <strong>A cyberpunk cityscape at night with neon lights and flying cars</strong>
+                    <p>16:9 • Photorealistic • High Quality</p>
+                </div>
+                <div class="history-image"></div>
+            </div>
+            
+            <div class="history-item">
+                <div class="history-prompt">
+                    <strong>A serene landscape with mountains reflected in a lake at sunrise</strong>
+                    <p>16:9 • Artistic • Standard Quality</p>
+                </div>
+                <div class="history-image"></div>
+            </div>
+            
+            <div class="history-item">
+                <div class="history-prompt">
+                    <strong>An astronaut exploring an alien jungle with bioluminescent plants</strong>
+                    <p>1:1 • Surreal • Ultra Quality</p>
+                </div>
+                <div class="history-image"></div>
+            </div>
+        </div>
+        
+        <footer>
+            <p>Midjourney AI Simulation | Agentic AI Engineering Project</p>
+            <p>Note: This is a frontend simulation. In a real implementation, this would connect to an AI image generation API.</p>
+        </footer>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const generateBtn = document.getElementById('generate-btn');
+            const imagePlaceholder = document.getElementById('image-placeholder');
+            const imageResult = document.getElementById('image-result');
+            const loading = document.getElementById('loading');
+            const modifierTags = document.querySelectorAll('.modifier-tag');
+            
+            // Add click event to modifier tags
+            modifierTags.forEach(tag => {
+                tag.addEventListener('click', function() {
+                    this.classList.toggle('active');
+                });
+            });
+            
+            // Generate image button click event
+            generateBtn.addEventListener('click', function() {
+                // Show loading state
+                loading.style.display = 'block';
+                imagePlaceholder.style.display = 'none';
+                imageResult.style.display = 'none';
+                
+                // Simulate API call delay
+                setTimeout(function() {
+                    // Hide loading
+                    loading.style.display = 'none';
+                    
+                    // Show result (in a real implementation, this would be the actual generated image)
+                    imagePlaceholder.style.display = 'none';
+                    imageResult.style.display = 'block';
+                    
+                    // Set a placeholder image (in a real app, this would be the generated image URL)
+                    imageResult.src = "https://via.placeholder.com/600x400/1e293b/3b82f6?text=AI+Generated+Image";
+                    
+                    // Add to history (in a real implementation, this would be stored properly)
+                    const promptText = document.querySelector('.prompt-input').value;
+                    const aspectRatio = document.getElementById('aspect-ratio').value;
+                    const style = document.getElementById('style').value;
+                    const quality = document.getElementById('quality').value;
+                    
+                    const historyContainer = document.querySelector('.history');
+                    const historyItem = document.createElement('div');
+                    historyItem.className = 'history-item';
+                    historyItem.innerHTML = `
+                        <div class="history-prompt">
+                            <strong>${promptText}</strong>
+                            <p>${aspectRatio} • ${style} • ${quality} Quality</p>
+                        </div>
+                        <div class="history-image"></div>
+                    `;
+                    
+                    historyContainer.insertBefore(historyItem, historyContainer.firstChild.nextSibling);
+                }, 2000);
+            });
+        });
+    </script>
+</body>
+</html>

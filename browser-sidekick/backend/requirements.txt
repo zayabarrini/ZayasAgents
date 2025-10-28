@@ -1,0 +1,11 @@
+# requirements.txt
+fastapi==0.104.1
+uvicorn==0.24.0
+langgraph==0.0.40
+langchain==0.0.350
+langchain-openai==0.0.2
+langchain-community==0.0.10
+selenium==4.15.0
+beautifulsoup4==4.12.2
+requests==2.31.0
+python-multipart==0.0.6

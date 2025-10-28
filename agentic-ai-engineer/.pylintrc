@@ -1,0 +1,16 @@
+[MASTER]
+extension-pkg-allow-list=autogen
+jobs=4
+
+[MESSAGES CONTROL]
+disable=
+    missing-docstring,
+    too-few-public-methods,
+    import-error,
+    broad-except,
+    too-many-arguments
+
+[FORMAT]
+max-line-length=88
+
+[TYPING]

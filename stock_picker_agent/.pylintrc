@@ -1,0 +1,10 @@
+[MASTER]
+extension-pkg-allow-list=yfinance
+
+[MESSAGES CONTROL]
+disable=C0103,C0301,R0903,R0913,R0914
+
+[FORMAT]
+max-line-length=88
+
+[TYPING]

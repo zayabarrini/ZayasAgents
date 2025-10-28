@@ -1,0 +1,71 @@
+{
+  "name": "Alex Johnson",
+  "title": "Senior AI Engineer",
+  "about": "Innovative AI engineer with 5+ years of experience in developing machine learning solutions and leading technical teams. Passionate about creating AI systems that solve real-world problems and drive business value.",
+  "image_url": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=400&fit=crop&crop=face",
+  "skills": [
+    "Python",
+    "Machine Learning",
+    "Deep Learning",
+    "TensorFlow",
+    "PyTorch",
+    "Natural Language Processing",
+    "Computer Vision",
+    "AWS",
+    "Docker",
+    "Kubernetes",
+    "MLOps",
+    "Data Engineering"
+  ],
+  "experience": [
+    {
+      "position": "Senior AI Engineer",
+      "company": "InnovateTech Solutions",
+      "start_date": "2020-03",
+      "end_date": "Present",
+      "description": "Lead development of AI-powered products and mentor junior engineers.",
+      "achievements": [
+        "Reduced model inference time by 60% through optimization techniques",
+        "Led team that delivered 3 production ML models with 95%+ accuracy",
+        "Implemented MLOps pipeline reducing deployment time from 2 weeks to 2 days"
+      ]
+    },
+    {
+      "position": "Machine Learning Engineer",
+      "company": "DataDriven Inc",
+      "start_date": "2018-06",
+      "end_date": "2020-02",
+      "description": "Developed and deployed machine learning models for various business applications.",
+      "achievements": [
+        "Built recommendation system increasing user engagement by 25%",
+        "Created fraud detection model saving $2M annually",
+        "Automated data preprocessing reducing manual work by 80%"
+      ]
+    }
+  ],
+  "education": [
+    {
+      "degree": "MSc in Artificial Intelligence",
+      "institution": "Stanford University",
+      "year": "2018",
+      "gpa": "3.9"
+    },
+    {
+      "degree": "BSc in Computer Science",
+      "institution": "MIT",
+      "year": "2016",
+      "gpa": "3.8"
+    }
+  ],
+  "certifications": [
+    "AWS Certified Machine Learning - Specialty",
+    "Google Professional Machine Learning Engineer"
+  ],
+  "projects": [
+    {
+      "name": "AI-Powered Customer Support",
+      "description": "Developed NLP system that handles 70% of customer queries automatically",
+      "technologies": ["Python", "TensorFlow", "NLP", "Docker"]
+    }
+  ]
+}

@@ -1,0 +1,27 @@
+// browser-extension/manifest.json
+{
+  "manifest_version": 3,
+  "name": "AI Sidekick",
+  "version": "1.0.0",
+  "description": "Your AI assistant that works alongside you in the browser",
+  "permissions": ["activeTab", "storage"],
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["content-script.js"],
+      "css": ["styles.css"]
+    }
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "commands": {
+    "open-sidekick": {
+      "suggested_key": {
+        "default": "Ctrl+K",
+        "mac": "Command+K"
+      },
+      "description": "Open AI Sidekick"
+    }
+  }
+}
